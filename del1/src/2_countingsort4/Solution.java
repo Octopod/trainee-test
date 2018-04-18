@@ -9,10 +9,6 @@ public class Solution {
     static Map createMap(){
         Map<Integer, ArrayList<String>> mapOfInput = new HashMap<>(100);
 
-        for (int i = 0; i < 100; i++) {
-            mapOfInput.put(i, new ArrayList<String>());
-        }
-
         Scanner in = new Scanner(System.in);
         int nrOfPairs = in.nextInt();
         for (int i=0; i<nrOfPairs; i++){
@@ -20,7 +16,14 @@ public class Solution {
             String s = in.next();
 
             ArrayList<String> list = mapOfInput.get(x);
-            list.add(s);
+            if (list == null){
+                mapOfInput.put(x, new ArrayList<>());
+                list = mapOfInput.get(x);
+            }
+            if (i<(nrOfPairs/2)){
+                list.add("-");
+            }else
+                list.add(s);
         }
         in.close();
         return mapOfInput;
@@ -28,7 +31,16 @@ public class Solution {
 
     public static void main(String[] args) {
         Map map = createMap();
-
-
+        Iterator entries = map.entrySet().iterator();
+        StringBuilder resultString = new StringBuilder();
+        while (entries.hasNext()) {
+            Map.Entry entry = (Map.Entry) entries.next();
+            ArrayList<String> value = (ArrayList<String>)entry.getValue();
+            for (String listEntry: value) {
+                resultString.append(listEntry + " ");
+            }
+        }
+        String end = resultString.toString().trim();
+        System.out.println(end);
     }
 }
