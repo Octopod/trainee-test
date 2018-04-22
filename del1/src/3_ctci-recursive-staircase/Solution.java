@@ -1,5 +1,3 @@
-package se.denisen;
-
 import java.util.Scanner;
 
 class Solution {
