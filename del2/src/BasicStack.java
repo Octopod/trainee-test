@@ -7,13 +7,12 @@ public class BasicStack<T> implements Stack<T> {
         this.topNode = null;
     }
 
-    // Node class
     private static final class Node<T>{
         private T item;
         private Node<T> nextNode;
 
-        private Node(T nodeData, Node<T> nextNode){
-            this.item = nodeData;
+        private Node(T item, Node<T> nextNode){
+            this.item = item;
             this.nextNode = nextNode;
         }
     }
@@ -67,7 +66,6 @@ public class BasicStack<T> implements Stack<T> {
         }
         throw new IllegalArgumentException();
     }
-
 
     @Override
     public boolean isEmpty() {
